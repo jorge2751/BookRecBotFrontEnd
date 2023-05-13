@@ -8,9 +8,9 @@ const Questionnaire = () => {
     const [genreOrFormat, setGenreOrFormat] = useState('');
     const [recommendations, setRecommendations] = useState([]);
 
-    const genres = ['Fantasy', 'Mystery', 'Romance', 'Sci-fi', 'Horror', 'Self-help']; // Modify as needed
-    const formats = ['Articles', 'Books', 'Other Literature Formats']; // Modify as needed
-    const reasons = ['Personal', 'Education', 'Research']; // Define reasons
+    const genres = ['Fantasy', 'Mystery', 'Romance', 'Sci-fi', 'Horror', 'Self-help'];
+    const formats = ['Articles', 'Books', 'Other Literature Formats'];
+    const reasons = ['Personal', 'Education', 'Research'];
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -38,21 +38,28 @@ const Questionnaire = () => {
         <Container maxWidth="sm" style={container}>
             {recommendations.length > 0 ? (
                 <>
-                    {/* Use a fragment to wrap multiple elements */}
-                    {recommendations.map((recommendation, index) => (
-                        <Card key={index}>
-                            <CardContent>
-                                <Typography variant="h5">{recommendation.title}</Typography>
-                                <Typography variant="subtitle1">{recommendation.author}</Typography>
-                                {/* Link that opens new tab */}
-                                <a href={recommendation.link} target="_blank" rel="noreferrer">Link</a>
-                            </CardContent>
-                        </Card>
-                    ))}
-                    {/* Wrap the Reset button in a Card and CardContent */}
-                    <Card>
-                        <Button onClick={() => setRecommendations([])}>Modify Search</Button>
-                    </Card>
+                    <Grid container spacing={3}>
+                        {/* Use map to iterate over the recommendations */}
+                        {recommendations.map((recommendation, index) => (
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                                {/* Wrap each card in a Grid item */}
+                                <Card>
+                                    <CardContent>
+                                        {/* Thumbnail */}
+                                        <img src={recommendation.thumbnail} alt={recommendation.title} />
+                                        <Typography variant="h6">{recommendation.title}</Typography>
+                                        <Typography variant="subtitle2">by {recommendation.author}</Typography>
+                                        {/* Link that opens new tab */}
+                                        <a href={recommendation.link} target="_blank" rel="noreferrer">Link</a>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                        <Grid item xs={12}>
+                            <Button variant='outlined' onClick={() => setRecommendations([])}>Modify Search</Button>
+                        </Grid>
+                    </Grid>
+
                 </>
             ) : (
                 <form onSubmit={handleSubmit}>
