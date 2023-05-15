@@ -9,7 +9,7 @@ const Questionnaire = () => {
     const [recommendations, setRecommendations] = useState([]);
 
     const genres = ['Fantasy', 'Mystery', 'Romance', 'Sci-fi', 'Horror', 'Self-help'];
-    const formats = ['Articles', 'Books', 'Other Literature Formats'];
+    const formats = ['Articles', 'Books', 'Blog posts', 'Podcasts', 'Videos'];
     const reasons = ['Personal', 'Education', 'Research'];
 
     const handleSubmit = async (event) => {
