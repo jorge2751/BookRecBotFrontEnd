@@ -77,7 +77,20 @@ const Questionnaire = () => {
                             </Grid>
                         ))}
                         <Grid item xs={12}>
-                            <Button variant='outlined' onClick={() => setRecommendations([])}>Modify Search</Button>
+                            <Button 
+                                variant='outlined' 
+                                onClick={() => setRecommendations([])}
+                                sx={{
+                                    color: '#b6940e',
+                                    borderColor: '#b6940e',
+                                    '&:hover': {
+                                        backgroundColor: 'rgba(182, 148, 14, 0.2)',
+                                        borderColor: '#b6940e',
+                                    },
+                                }}
+                                >
+                                Modify Search
+                            </Button>
                         </Grid>
                     </Grid>
 
@@ -97,6 +110,15 @@ const Questionnaire = () => {
                                         setGenreOrFormat('');
                                         setRecommendations([]);
                                     }}
+                                    sx={{
+                                        color: reason === option.toLowerCase() ? '#fff' : '#b6940e',
+                                        backgroundColor: reason === option.toLowerCase() ? '#b6940e' : 'transparent',
+                                        borderColor: '#b6940e',
+                                        '&:hover': {
+                                            backgroundColor: reason === option.toLowerCase() ? '#b6940e' : 'rgba(182, 148, 14, 0.2)',
+                                            borderColor: '#b6940e',
+                                        },
+                                    }}
                                 >
                                     {option}
                                 </Button>
@@ -108,9 +130,23 @@ const Questionnaire = () => {
                         <Box mb={3}>
                             <TextField
                                 fullWidth
-                                variant="outlined"
                                 label={reason === 'personal' ? "Name any books/authors/topics you already enjoy" : 'Describe the topic you would like to explore'}
                                 value={topic}
+                                sx={{
+                                    backgroundColor: 'rgba(182, 148, 14, 0.2)',
+                                    '& .MuiInputBase-input': {
+                                        color: '#b6940e',
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: '#b6940e',
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#b6940e',
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#b6940e',
+                                    },
+                                }}
                                 onChange={(e) => setTopic(e.target.value)}
                             />
                         </Box>
@@ -123,11 +159,20 @@ const Questionnaire = () => {
                             </Typography>
                             <Grid container spacing={1} wrap="wrap">
                                 {(reason === 'personal' ? genres : formats).map((option) => (
-                                    <Grid item xs={6} sm={4} md={3} key={option}>
+                                    <Grid item xs={6} sm={4} md={4} key={option}>
                                         <Button
                                             variant={genreOrFormat === option ? 'contained' : 'outlined'}
                                             fullWidth
                                             onClick={() => setGenreOrFormat(option)}
+                                            sx={{
+                                                color: genreOrFormat === option ? '#fff' : '#b6940e',
+                                                backgroundColor: genreOrFormat === option ? '#b6940e' : 'transparent',
+                                                borderColor: '#b6940e',
+                                                '&:hover': {
+                                                    backgroundColor: genreOrFormat === option ? '#b6940e' : 'rgba(182, 148, 14, 0.2)',
+                                                    borderColor: '#b6940e',
+                                                },
+                                            }}
                                         >
                                             {option}
                                         </Button>
@@ -137,8 +182,13 @@ const Questionnaire = () => {
                         </Box>
                     )}
 
-
-                    <Button type="submit" variant="contained" color="primary" disabled={!reason || !topic || !genreOrFormat}>Submit</Button>
+                    <Button type="submit" variant="contained" color="primary" disabled={!reason || !topic || !genreOrFormat} sx={{
+                        backgroundColor: '#b6940e',
+                        color: '#fff',
+                        '&:hover': {
+                            backgroundColor: 'rgba(182, 148, 14, 0.8)',
+                        },
+                    }}>Submit</Button>
                 </form>
             )}
         </Container>
